@@ -16,7 +16,7 @@ def get_python_news() -> 'list_dict':
         soup = BeautifulSoup(html, 'html.parser') #преобразуем полученный html в дерево soup
         all_news = soup.find('ul', class_='list-recent-posts').findAll('li')
         result_news = []
-        foor news in all_news:
+        for news in all_news:
             title = news.find('a').text
             url = news.find('a')['href']
             published = news.find('time').text
