@@ -1,17 +1,31 @@
-from flask import Flask, render_template
+from flask import Flask, flash, render_template, redirect, url_for
+from flask_login import LoginManager, login_required
 
+from webapp.db import db
+from webapp.user.models import User
+from webapp.admin.views import blueprint as admin_blueprint
+from webapp.user.views import blueprint as user_blueprint
+from webapp.news.views import blueprint as news_blueprint
 from webapp.weather import weather_by_city
-from webapp.python_org_news import get_python_news
-# from webapp.config import WEATHER_DEFAULT_CITY, WEATHER_API_KEY
 
 
 def create_app():
     app = Flask(__name__)
     app.config.from_pyfile('config.py')
-    @app.route('/')
-    def index():
-        title = 'Новости Python'
-        weather = weather_by_city(app.config['WEATHER_DEFAULT_CITY'])
-        news_list = get_python_news()
-        return render_template('index.html', page_title=title, weather=weather, news_list=news_list)
+    db.init_app(app)
+
+    login_manager = LoginManager() #создаем экземпляр LoginManager
+    login_manager.init_app(app)
+    login_manager.login_view = 'user.login'  # 'user.login' название ф-ции которая занимается логином пользователя
+    
+    app.register_blueprint(admin_blueprint)
+    app.register_blueprint(news_blueprint)
+    app.register_blueprint(user_blueprint)
+
+    # проверяем пользователя
+    @login_manager.user_loader #login_manager вытаскивает из сессионой cookie user_id 
+    def load_user(user_id): # предеает user_id и load_user
+        return User.query.get(user_id) # запрашиваем из б/д
+
+    
     return app
