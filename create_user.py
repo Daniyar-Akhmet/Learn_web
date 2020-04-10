@@ -1,4 +1,4 @@
-from getpass import getpass  #схоже с input но скрывает введенные символы
+﻿from getpass import getpass  #схоже с input но скрывает введенные символы
 import sys  # модуль с системными функциями и вызовами
 
 from webapp import create_app
@@ -14,9 +14,9 @@ with app.app_context():
         print('Пользователь с таким именем уже существует')
         sys.exit(0)
     
-    rols = ('admin', 'user', 'guest')
+    roles = ('admin', 'user', 'guest')
     role = input('Введите роль пользователя (admin, user, guest):')
-    if role not in rols:
+    if role not in roles:
         print('Роль пользователя введена не верно.')
         sys.exit(0)
 

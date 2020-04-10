@@ -4,3 +4,4 @@ web_env/
 .git/
 config.py
 *.db
+webapp/config.py

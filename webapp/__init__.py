@@ -1,4 +1,4 @@
-from flask import Flask, flash, render_template, redirect, url_for
+﻿from flask import Flask, flash, render_template, redirect, url_for
 from flask_login import LoginManager, login_required
 
 from webapp.db import db
@@ -9,7 +9,7 @@ from webapp.news.views import blueprint as news_blueprint
 from webapp.weather import weather_by_city
 
 
-def create_app():
+def create_app(): # "фабрика" - функция которая создает Flask app, инициализирует его и возвращает app
     app = Flask(__name__)
     app.config.from_pyfile('config.py')
     db.init_app(app)
@@ -24,7 +24,7 @@ def create_app():
 
     # проверяем пользователя
     @login_manager.user_loader #login_manager вытаскивает из сессионой cookie user_id 
-    def load_user(user_id): # предеает user_id и load_user
+    def load_user(user_id): # пeредает user_id в load_user
         return User.query.get(user_id) # запрашиваем из б/д
 
     

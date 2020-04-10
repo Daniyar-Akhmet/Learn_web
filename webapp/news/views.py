@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, current_app
+﻿from flask import Blueprint, render_template, current_app # current_app позволяет обращатся к текущему flask приложению
 
 from webapp.news.models import News
 

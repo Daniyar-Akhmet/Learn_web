@@ -1,4 +1,4 @@
-from datetime import datetime
+﻿from datetime import datetime
 
 import requests
 from bs4 import BeautifulSoup
@@ -7,10 +7,10 @@ from webapp.news.models import News
 
 def get_html(url) -> 'html':
     try:
-        result = requests.get(url)
-        result.raise_for_status()
-        return result.text
-    except(requests.RequestException, ValueError):
+        result = requests.get(url) # 1
+        result.raise_for_status() # 2
+        return result.text # возвращает html страницы в тестовом виде
+    except(requests.RequestException, ValueError): # RequestException если сетевая ошибка (1), ValueError если на стороне сервера возникла проблема (2)
         print('Сетевая ошибка')
         return False
 
