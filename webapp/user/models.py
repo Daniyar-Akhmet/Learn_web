@@ -8,6 +8,7 @@ class User(db.Model, UserMixin):  # класс User наследуется от 
     username = db.Column(db.String(40), index=True, unique=True)
     password = db.Column(db.String(128))
     role = db.Column(db.String(100), index=True)
+    email = db.Column(db.String(64))
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
