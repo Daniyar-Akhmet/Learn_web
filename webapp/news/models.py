@@ -1,6 +1,7 @@
 from webapp.db import db
 
-class News(db.Model): # класс News наследуется от db.Model
+
+class News(db.Model):  # класс News наследуется от db.Model
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     url = db.Column(db.String, unique=True, nullable=False)
@@ -9,4 +10,3 @@ class News(db.Model): # класс News наследуется от db.Model
 
     def __repr__(self):
         return '<News {} {}>'.format(self.title, self.url)
-
