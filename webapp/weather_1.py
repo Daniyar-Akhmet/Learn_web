@@ -29,8 +29,6 @@ def weather_by_city(city_name):
 
 # print(weather_by_city("Almaty, Kazakhstan"))
 
+
 if __name__ == "__main__":
     print(weather_by_city("Almaty, Kazakhstan"))
-
-  
-    

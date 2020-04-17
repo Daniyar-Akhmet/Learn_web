@@ -12,9 +12,9 @@ def weather_by_city(city_name):
         "lang": "ru"
     }
     try:
-        result = requests.get(weather_url, params=params) # 1
-        result.raise_for_status() # сгенерирует исключение если сервер ответит кодом начинающимся 4хх или 5хх
-        weather = result.json() # 2. 
+        result = requests.get(weather_url, params=params)  # 1
+        result.raise_for_status()  # сгенерирует исключение если сервер ответит кодом начинающимся 4хх или 5хх
+        weather = result.json()  # 2.
         if 'data' in weather:
             if 'current_condition' in weather['data']:
                 try:
@@ -26,7 +26,7 @@ def weather_by_city(city_name):
         return False
     return False
 
+
 if __name__ == "__main__":
     print(weather_by_city("Almaty, Kazakhstan"))
-    
     # 1 и 2 это основной код, остальное все проверки.
